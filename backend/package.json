@@ -4,7 +4,9 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon src/app.js",
+    "start": "node src/app.js",
+    "prod": "pm2 src/app.js"
   },
   "author": "Bhavik jain",
   "license": "ISC",
@@ -12,6 +14,7 @@
   "dependencies": {
     "bcrypt": "^6.0.0",
     "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
     "express": "^5.2.1",
     "http-status": "^2.1.0",
     "mongodb": "^7.0.0",
