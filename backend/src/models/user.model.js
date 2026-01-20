@@ -1,5 +1,4 @@
-import { Schema } from "mongoose";
-import mongoose from "mongoose";
+import { Schema,model } from "mongoose";
 
 const userSchema = new Schema({
     name: { type: String, required: true },
@@ -8,5 +7,5 @@ const userSchema = new Schema({
     token: { type: String },
 });
 
-const User = mongoose.model("User", userSchema);
+const User = model("User", userSchema);
 export { User };
