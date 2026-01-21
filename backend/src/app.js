@@ -8,7 +8,7 @@ import userRoutes from "./routes/users.routes.js";
 
 const app = express();
 const server = createServer(app);
-const io = connectToSocket(server);
+const io = connectToSocket(server,{ cors: {origin: "*", methods: ["GET", "POST"], allowedHeaders: ["*"], credentials: true,}});
 
 //--------------- initialize  .env variables and request parsers and routes----------------//
 dotenv.config();
