@@ -19,8 +19,8 @@ app.use(cors({
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: false
 }));
-app.use(express.json({ limit: "40kb" })); // to parse json data in request body
-app.use(express.urlencoded({ limit: "40kb", extended: true })); // to parse urlencoded data in request body
+app.use(express.json()); // to parse json data in request body
+app.use(express.urlencoded({ extended: true })); // to parse urlencoded data in request body
 
 app.use("/api/v1/users", userRoutes); // user routes
 

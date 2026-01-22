@@ -4,9 +4,11 @@ import { useNavigate } from 'react-router-dom';
 import httpStatus from "http-status";
 
 export const AuthContext = createContext({});
-
 const client = axios.create({
-  baseURL: 'http://localhost:3000/api/v1/users',
+  baseURL: "http://localhost:3000/api/v1/users",
+  headers: {
+    "Content-Type": "application/json",
+  },
 });
 
 export const AuthProvider = ({ children }) => {
@@ -18,7 +20,7 @@ export const AuthProvider = ({ children }) => {
     console.log("reach")
     try {
       console.log("Sending register request to:", client.defaults.baseURL + '/register');
-      let request = await client.post('/register', { name:name, username:username, password:password });
+      let request = await client.post('/register', { name:name, username:username, password:password });  // ye fail kar raha hai
       console.log("Response:", request);
       if(request.status === httpStatus.CREATED) {
         return request.data.message;
