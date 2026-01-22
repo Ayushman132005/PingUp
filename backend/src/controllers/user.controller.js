@@ -17,7 +17,7 @@ const login = async (req, res) => {
         .status(httpStatus.NOT_FOUND)
         .json({ message: "User not found" });
     }
-    if (bcrypt.compare(password, user.password)) {
+    if (await bcrypt.compare(password, user.password)) {
       let token = crypto.randomBytes(20).toString("hex");
       user.token = token;
       await user.save();
@@ -29,6 +29,7 @@ const login = async (req, res) => {
 };
 
 const register = async (req, res) => {
+  console.log("Register controller reached");
   const { name, username, password } = req.body;
   try {
     const existingUser = await User.findOne({ username });

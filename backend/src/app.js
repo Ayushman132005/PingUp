@@ -8,16 +8,22 @@ import userRoutes from "./routes/users.routes.js";
 
 const app = express();
 const server = createServer(app);
-const io = connectToSocket(server,{ cors: {origin: "*", methods: ["GET", "POST"], allowedHeaders: ["*"], credentials: true,}});
+const io = connectToSocket(server, { cors: { origin: "*", methods: ["GET", "POST"], allowedHeaders: ["*"], credentials: true } });
 
 //--------------- initialize  .env variables and request parsers and routes----------------//
 dotenv.config();
 app.set("port", process.env.port || 3000);
-app.use(cors()); // allows cross origin requests
+app.use(cors({
+  origin: "*",
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: false
+}));
 app.use(express.json({ limit: "40kb" })); // to parse json data in request body
 app.use(express.urlencoded({ limit: "40kb", extended: true })); // to parse urlencoded data in request body
 
 app.use("/api/v1/users", userRoutes); // user routes
+
 
 //------------------------ Start Server & Connect to DB ----------------------//
 const start = async () => {
